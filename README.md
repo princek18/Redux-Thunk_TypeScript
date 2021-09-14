@@ -1,3 +1,4 @@
+You can toggle between "Main Component Using Hooks" and "Main Component using Connect()" by commenting and uncommenting the same.
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
