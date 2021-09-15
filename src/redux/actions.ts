@@ -1,10 +1,10 @@
 import axios from "axios"
-import { Action } from "redux"
 import { ThunkAction, ThunkDispatch } from "redux-thunk"
 import { stateType } from "./reducers"
 
-export const fetch:ThunkAction<void, stateType, unknown, Action> = () => {
-    return (dispatch:any) => {
+export const fetch:ThunkAction<void, stateType, {}, any> = () => {
+    return (dispatch: ThunkDispatch<{}, void, any>) => {
+        console.log("hello");
         axios.get("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
             dispatch({

@@ -1,5 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { ThunkDispatch } from 'redux-thunk'
 import { delete_item, fetch } from '../redux/actions'
 import {stateType} from '../redux/reducers'
 
@@ -13,7 +14,7 @@ const MainComponent:React.FC<props> = ({data, fetch, delete_item}) => {
     return (
         <div>
             <h1>This is MainComponent using connect()!</h1>
-            <button onClick={() => fetch}>Fetch</button>
+            <button onClick={() => fetch()}>Fetch</button>
             {data.map((one) => {
                 return one.name?<h1 style={{cursor:"pointer"}} onClick={() => delete_item(one.id)} key={one.id}>{one.name}</h1> : 
                 <h1 key={one.id}>{one.error}</h1>
@@ -28,7 +29,7 @@ const mapStateToProps = (state:stateType[]) => {
     }
 }
 
-const mapDispatchToProps = (dispatch:any) => {
+const mapDispatchToProps = (dispatch:ThunkDispatch<undefined, void, any>) => {
     return{
         fetch: () => dispatch(fetch),
         delete_item: (id:number) => dispatch(delete_item(id))
