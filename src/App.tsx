@@ -1,6 +1,6 @@
 import './App.css';
 import MainComponent from './components/MainComponent';
-import { MainComponentHooks } from './components/MainComponentHooks';
+// import { MainComponentHooks } from './components/MainComponentHooks';
 
 function App() {
   return (

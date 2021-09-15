@@ -9,7 +9,7 @@ export const MainComponentHooks:React.FC = () => {
     return (
         <div>
             <h1>This is MainComponent with Hooks!</h1>
-            <button onClick={() => dispatch(fetch())}>Fetch</button>
+            {/* <button onClick={() => dispatch(fetch())}>Fetch</button> */}
             {data.map((one) => {
                 return one.name?<h1 style={{cursor:"pointer"}} onClick={() => dispatch(delete_item(one.id))} key={one.id}>{one.name}</h1>:
                 <h1>{one.error}</h1>
