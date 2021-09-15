@@ -1,7 +1,7 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { delete_item, fetch } from '../redux/actions'
-import {stateType} from '../redux/reducers'
+import { delete_item, fetch } from '../redux/actionsCreators'
+import {stateType, storeState} from '../redux/reducers'
 
 interface props{
     data: stateType[],
@@ -22,9 +22,9 @@ const MainComponent:React.FC<props> = ({data, fetch, delete_item}) => {
     )
 }
 
-const mapStateToProps = (state:stateType[]) => {
+const mapStateToProps = (state:storeState) => {    
     return{
-        data: state
+        data: state.data
     }
 }
 

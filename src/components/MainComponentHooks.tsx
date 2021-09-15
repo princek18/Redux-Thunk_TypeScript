@@ -1,10 +1,10 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { delete_item, fetch } from '../redux/actions'
-import { stateType } from '../redux/reducers'
+import { delete_item, fetch } from '../redux/actionsCreators'
+import { storeState } from '../redux/reducers'
 
 export const MainComponentHooks:React.FC = () => {
-    const data = useSelector((state:stateType[]) => state);
+    const data = useSelector((state:storeState) => state.data);
     const dispatch = useDispatch();
     return (
         <div>

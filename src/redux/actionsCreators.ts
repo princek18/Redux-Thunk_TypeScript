@@ -1,17 +1,18 @@
 import axios from "axios"
+import { DELETE, FETCH, ERROR } from "./actionTypes"
 
 export const fetch = () => {
     return (dispatch:any) => {
         axios.get("https://jsonplaceholder.typicode.com/users")
         .then((response) => {
             dispatch({
-                type: "FETCH",
+                type: FETCH,
                 payload: response.data
             })
         })
         .catch((error) => {
             dispatch({
-                type: "ERROR",
+                type: ERROR,
                 payload: error.message
             })
         })
@@ -20,7 +21,7 @@ export const fetch = () => {
 
 export const delete_item = (id:number) => {
     return {
-        type: "DELETE",
+        type: DELETE,
         payload: id
     }
 }
