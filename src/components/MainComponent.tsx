@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
+import { Dispatch } from 'redux'
 import { ThunkDispatch } from 'redux-thunk'
-import { delete_item, fetch } from '../redux/actions'
-import {stateType} from '../redux/reducers'
+import { delete_item, fetch } from '../redux/actionCreators'
+import {deleteAction, errorAction, fetchAction, stateType, storeState} from '../redux/reducers'
 
 interface props{
     data: stateType[],
@@ -23,15 +24,15 @@ const MainComponent:React.FC<props> = ({data, fetch, delete_item}) => {
     )
 }
 
-const mapStateToProps = (state:stateType[]) => {
+const mapStateToProps = (state:storeState) => {
     return{
-        data: state
+        data: state.data
     }
 }
 
-const mapDispatchToProps = (dispatch:ThunkDispatch<{}, {}, any>) => {
+const mapDispatchToProps = (dispatch:(Dispatch<deleteAction> | ThunkDispatch<storeState, {}, fetchAction | errorAction>)) => {
     return{
-        fetch: () => dispatch(fetch),
+        fetch: () => dispatch(fetch()),
         delete_item: (id:number) => dispatch(delete_item(id))
     }
 }
