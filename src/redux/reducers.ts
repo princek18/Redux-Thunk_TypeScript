@@ -9,7 +9,7 @@ export interface stateType{
     phone: string
 }
 
-export interface storeState{
+interface storeState{
   data: stateType[];
 }
 

@@ -1,8 +1,9 @@
 import React from 'react'
 import { connect } from 'react-redux'
 import { bindActionCreators, Dispatch } from 'redux'
+import { RootState } from '..'
 import { delete_item, fetch } from '../redux/actionCreators'
-import { stateType, storeState} from '../redux/reducers'
+import { stateType } from '../redux/reducers'
 
 interface props{
     data: stateType[],
@@ -25,7 +26,7 @@ const MainComponent:React.FC<props> = ({data, actions}) => {
     )
 }
 
-const mapStateToProps = (state:storeState) => {
+const mapStateToProps = (state:RootState) => {
     return{
         data: state.data
     }

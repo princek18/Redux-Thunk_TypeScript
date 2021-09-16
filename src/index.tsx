@@ -11,6 +11,8 @@ import {composeWithDevTools} from 'redux-devtools-extension'
 
 const store = createStore(fetchReducer,composeWithDevTools(applyMiddleware(thunk)));
 
+export type RootState = ReturnType<typeof store.getState>;
+
 ReactDOM.render(
   <React.StrictMode>
     <Provider store={store}>
