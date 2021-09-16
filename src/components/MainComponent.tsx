@@ -1,9 +1,10 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { bindActionCreators, Dispatch } from 'redux'
+import { bindActionCreators } from 'redux'
+import { ThunkDispatch } from 'redux-thunk'
 import { RootState } from '..'
 import { delete_item, fetch } from '../redux/actionCreators'
-import { stateType } from '../redux/reducers'
+import { Actions, stateType } from '../redux/reducers'
 
 interface props{
     data: stateType[],
@@ -32,7 +33,7 @@ const mapStateToProps = (state:RootState) => {
     }
 }
 
-const mapDispatchToProps = (dispatch:Dispatch) => {
+const mapDispatchToProps = (dispatch:ThunkDispatch<RootState, {}, Actions>) => {
     return{
         actions: {
         fetch: bindActionCreators(fetch, dispatch),
