@@ -3,7 +3,9 @@ import { ThunkAction } from "redux-thunk"
 import { DELETE, FETCH, ERROR } from "./actionTypes"
 import { errorAction, fetchAction, storeState } from "./reducers"
 
-export const fetch:() => ThunkAction<void, storeState, {}, fetchAction | errorAction> = () => {
+type Actions = fetchAction | errorAction
+
+export const fetch = ():ThunkAction<void, storeState, {}, Actions> => {
     return (dispatch) => {
         axios.get('https://jsonplaceholder.typicode.com/users')
         .then((response) => {

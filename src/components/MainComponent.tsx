@@ -1,23 +1,24 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { Dispatch } from 'redux'
-import { ThunkDispatch } from 'redux-thunk'
+import { bindActionCreators, Dispatch } from 'redux'
 import { delete_item, fetch } from '../redux/actionCreators'
-import {deleteAction, errorAction, fetchAction, stateType, storeState} from '../redux/reducers'
+import { stateType, storeState} from '../redux/reducers'
 
 interface props{
     data: stateType[],
+    actions:{
     fetch: () => void,
     delete_item: (id:number) => void
+    }
 }
 
-const MainComponent:React.FC<props> = ({data, fetch, delete_item}) => {
+const MainComponent:React.FC<props> = ({data, actions}) => {
     return (
         <div>
             <h1>This is MainComponent using connect()!</h1>
-            <button onClick={fetch}>Fetch</button>
+            <button onClick={actions.fetch}>Fetch</button>
             {data.map((one) => {
-                return one.name?<h1 style={{cursor:"pointer"}} onClick={() => delete_item(one.id)} key={one.id}>{one.name}</h1> : 
+                return one.name?<h1 style={{cursor:"pointer"}} onClick={() => actions.delete_item(one.id)} key={one.id}>{one.name}</h1> : 
                 <h1 key={one.id}>{one.error}</h1>
             })}
         </div>
@@ -30,10 +31,12 @@ const mapStateToProps = (state:storeState) => {
     }
 }
 
-const mapDispatchToProps = (dispatch:(Dispatch<deleteAction> | ThunkDispatch<storeState, {}, fetchAction | errorAction>)) => {
+const mapDispatchToProps = (dispatch:Dispatch) => {
     return{
-        fetch: () => dispatch(fetch()),
-        delete_item: (id:number) => dispatch(delete_item(id))
+        actions: {
+        fetch: bindActionCreators(fetch, dispatch),
+        delete_item: bindActionCreators(delete_item, dispatch)
+        }
     }
 }
 
