@@ -6,6 +6,7 @@ import { RootState } from '..'
 import { delete_item, fetch } from '../redux/actionCreators'
 import { Actions, stateType } from '../redux/reducers'
 
+
 interface props{
     data: stateType[],
     actions:{
@@ -28,6 +29,7 @@ const MainComponent:React.FC<props> = ({data, actions}) => {
 }
 
 const mapStateToProps = (state:RootState) => {
+
     return{
         data: state.data
     }

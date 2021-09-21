@@ -36,6 +36,34 @@ export type Actions = fetchAction | deleteAction | errorAction;
 
 export const fetchReducer: Reducer<storeState, Actions> = (
   state = initialState,
+}
+export interface storeState{
+    data: stateType[]
+}
+
+const intialState = {
+    data: []
+}
+
+interface deleteAction{
+    type: typeof DELETE,
+    payload: number
+}
+
+interface fetchAction{
+    type: typeof FETCH,
+    payload: stateType[]
+}
+
+interface errorAction{
+    type: typeof ERROR,
+    payload: string
+}
+
+type actions = deleteAction | fetchAction | errorAction;
+
+export const fetchReducer: Reducer<storeState, actions> = (
+  state = intialState,
   action
 ) => {
   switch (action.type) {

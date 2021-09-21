@@ -5,6 +5,7 @@ import { RootState } from '..'
 
 export const MainComponentHooks:React.FC = () => {
     const data = useSelector((state:RootState) => state.data);
+
     const dispatch = useDispatch();
     return (
         <div>
